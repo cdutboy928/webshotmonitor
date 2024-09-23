@@ -1,18 +1,18 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "QQ Browser Plugin",
   "version": "1.0",
   "description": "A QQ browser plugin that refreshes a webpage, takes a screenshot, performs OCR, and triggers audio alerts based on keywords.",
   "permissions": [
     "tabs",
     "activeTab",
-    "background",
     "storage",
-    "alarms"
+    "alarms",
+    "downloads",
+    "notifications"
   ],
   "background": {
-    "scripts": ["background.js"],
-    "persistent": false
+    "service_worker": "background.js"
   },
   "content_scripts": [
     {
@@ -20,12 +20,21 @@
       "js": ["ocr.js"]
     }
   ],
-  "browser_action": {
+  "action": {
     "default_popup": "popup.html",
     "default_icon": {
       "16": "icons/icon16.png",
       "48": "icons/icon48.png",
       "128": "icons/icon128.png"
     }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["popup.js"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
   }
 }

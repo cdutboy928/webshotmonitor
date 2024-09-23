@@ -7,7 +7,7 @@
       width: 200px;
       padding: 10px;
     }
-    button {
+    button, input {
       width: 100%;
       padding: 10px;
       margin-top: 10px;
@@ -16,16 +16,10 @@
 </head>
 <body>
   <h1>QQ Browser Plugin</h1>
+  <input type="text" id="url" placeholder="Enter URL" />
+  <button id="save">Save URL</button>
   <button id="start">Start</button>
   <button id="stop">Stop</button>
-  <script>
-    document.getElementById('start').addEventListener('click', () => {
-      chrome.alarms.create("refreshAlarm", { periodInMinutes: 5 });
-    });
-
-    document.getElementById('stop').addEventListener('click', () => {
-      chrome.alarms.clear("refreshAlarm");
-    });
-  </script>
+  <script src="popup.js"></script>
 </body>
 </html>
