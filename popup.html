@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>QQ Browser Plugin</title>
+  <style>
+    body {
+      width: 200px;
+      padding: 10px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>QQ Browser Plugin</h1>
+  <button id="start">Start</button>
+  <button id="stop">Stop</button>
+  <script>
+    document.getElementById('start').addEventListener('click', () => {
+      chrome.alarms.create("refreshAlarm", { periodInMinutes: 5 });
+    });
+
+    document.getElementById('stop').addEventListener('click', () => {
+      chrome.alarms.clear("refreshAlarm");
+    });
+  </script>
+</body>
+</html>
